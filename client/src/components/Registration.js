@@ -21,7 +21,7 @@ export default class Registration extends Component {
         axios
             .post("/api/register", this.state)
             .then((result) => {
-                console.log("register, sent data", result);
+                console.log("register, sent data", result.id);
                 event.target.reset();
                 window.location.replace("/");
                 this.setState({

@@ -1,4 +1,15 @@
 import ReactDOM from "react-dom";
-import Registration from "./components/Registration";
+import Welcome from "./components/Welcome";
+import axios from "axios";
 
-ReactDOM.render(<Registration />, document.querySelector("main"));
+axios
+    .get("/api/user/id.json")
+    .then((response) => {
+        ReactDOM.render(
+            <Welcome userId={response.data.userId} />,
+            document.querySelector("main")
+        );
+    })
+    .catch((error) => {
+        console.log(error);
+    });

@@ -30,7 +30,7 @@ function addUser({ firstname, lastname, email, password }) {
                     [firstname, lastname, email, passwordhash]
                 )
                 .then((result) => {
-                    return result.rows;
+                    return result.rows[0];
                 })
                 .catch((error) => {
                     console.log("db.js addUser error", error.message);
