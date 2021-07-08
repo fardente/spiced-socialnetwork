@@ -9,4 +9,4 @@ CREATE TABLE users(
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-INSERT INTO users (firstname, lastname, email, passwordhash) VALUES ('Homer', 'Simpson', 'homer@s.com', 'asd');
+INSERT INTO users (firstname, lastname, email, passwordhash) VALUES ('Homer', 'Simpson', 'homer@s.com', '$2a$10$vPIxWGr70UNqekKXnLOnwewIb0euur0w2k2MS/LHBbGwlxecSo3lm');

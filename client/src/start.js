@@ -1,7 +1,4 @@
 import ReactDOM from "react-dom";
+import Registration from "./components/Registration";
 
-ReactDOM.render(<HelloWorld />, document.querySelector("main"));
-
-function HelloWorld() {
-    return <div>Hello, World!</div>;
-}
+ReactDOM.render(<Registration />, document.querySelector("main"));
