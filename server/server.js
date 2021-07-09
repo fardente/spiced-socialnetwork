@@ -3,6 +3,7 @@ const app = express();
 const compression = require("compression");
 const path = require("path");
 const cookieSession = require("cookie-session");
+const csurf = require("csurf");
 const db = require("./db");
 
 app.use(compression());
@@ -15,6 +16,13 @@ app.use(
         maxAge: 1000 * 60 * 60 * 24,
     })
 );
+
+app.use(csurf());
+
+app.use(function (request, response, next) {
+    response.cookie("csrftoken", request.csrfToken());
+    next();
+});
 
 app.use(express.static(path.join(__dirname, "..", "client", "public")));
 

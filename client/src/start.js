@@ -1,6 +1,6 @@
 import ReactDOM from "react-dom";
 import Welcome from "./components/Welcome";
-import axios from "axios";
+import axios from "./axios";
 
 axios
     .get("/api/user/id.json")
