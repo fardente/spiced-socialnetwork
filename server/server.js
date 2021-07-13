@@ -122,6 +122,11 @@ app.post("/api/register", (request, response) => {
         });
 });
 
+app.post("/api/user/updatebio", async (request, response) => {
+    const result = await db.updateBio(request.session.userId, request.body.bio);
+    response.json(result);
+});
+
 app.post(
     "/api/upload",
     uploader.single("file"),

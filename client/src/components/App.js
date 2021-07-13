@@ -19,6 +19,7 @@ export default class App extends Component {
         this.onAvatarClick = this.onAvatarClick.bind(this);
         this.toggleModal = this.toggleModal.bind(this);
         this.updateAvatar = this.updateAvatar.bind(this);
+        this.updateBio = this.updateBio.bind(this);
     }
 
     async componentDidMount() {
@@ -41,6 +42,13 @@ export default class App extends Component {
 
     updateAvatar(avatar_url) {
         this.setState({ avatar_url });
+    }
+
+    updateBio(bio) {
+        console.log("updatebio", bio);
+        this.setState({
+            bio,
+        });
     }
 
     render() {
@@ -68,6 +76,7 @@ export default class App extends Component {
                     avatar_url={this.state.avatar_url}
                     bio={this.state.bio}
                     onAvatarClick={this.onAvatarClick}
+                    updateBio={this.updateBio}
                 />
             </section>
         );

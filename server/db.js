@@ -141,6 +141,16 @@ function addUser({ firstname, lastname, email, password }) {
         });
 }
 
+async function updateBio(id, bio) {
+    console.log("db update bio", id, bio);
+    const result = await db.query("UPDATE users SET bio = $2 WHERE id = $1", [
+        id,
+        bio,
+    ]);
+    console.log(result);
+    return result;
+}
+
 async function updateAvatar(id, avatar_url) {
     const result = await db.query(
         "UPDATE users SET avatar_url = $2 WHERE id = $1 RETURNING *",
@@ -160,4 +170,5 @@ module.exports = {
     login,
     addUser,
     updateAvatar,
+    updateBio,
 };
