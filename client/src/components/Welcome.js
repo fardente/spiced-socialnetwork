@@ -1,15 +1,24 @@
+import { HashRouter, Route } from "react-router-dom";
 import Registration from "./Registration";
+import Login from "./Login";
+import PWreset from "./PWreset";
 
-function Welcome(props) {
-    console.log("logging welcome props ", props.userId);
-    const loggedIn = props.userId;
-    if (loggedIn) {
-        return <div>Welcome to the N3tW0Rk</div>;
-    }
+function Welcome() {
     return (
         <div>
             <h1>Welcome</h1>
-            <Registration />
+            <HashRouter>
+                <Route path="/" exact>
+                    <Registration />
+                </Route>
+
+                <Route path="/login">
+                    <Login />
+                </Route>
+                <Route path="/pwreset">
+                    <PWreset />
+                </Route>
+            </HashRouter>
         </div>
     );
 }

@@ -2,39 +2,36 @@ import { Component } from "react";
 import axios from "../axios";
 import { Link } from "react-router-dom";
 
-export default class Registration extends Component {
+export default class Login extends Component {
     constructor(props) {
         super(props);
+
         this.state = {
-            firstname: null,
-            lastname: null,
             email: null,
             password: null,
         };
 
-        this.register = this.register.bind(this);
+        this.login = this.login.bind(this);
         this.onChange = this.onChange.bind(this);
     }
 
-    register(event) {
+    login(event) {
         event.preventDefault();
-        console.log("register", event);
+        console.log("login", event);
         axios
-            .post("/api/register", this.state)
+            .post("/api/login", this.state)
             .then((result) => {
-                console.log("register, sent data", result.id);
+                console.log("login, sent data", result.id);
                 event.target.reset();
                 window.location.replace("/");
                 this.setState({
-                    firstname: null,
-                    lastname: null,
                     email: null,
                     password: null,
                     error: null,
                 });
             })
             .catch((error) => {
-                console.log("error posting", error.message);
+                console.log("error login", error.response);
                 this.setState({
                     error: error.response.data.error,
                 });
@@ -49,21 +46,9 @@ export default class Registration extends Component {
 
     render() {
         return (
-            <div className="registration">
-                <h1>Register please...</h1>
-                <form method="POST" onSubmit={this.register}>
-                    <input
-                        type="text"
-                        name="firstname"
-                        placeholder="First Name"
-                        onChange={this.onChange}
-                    />
-                    <input
-                        type="text"
-                        name="lastname"
-                        placeholder="Last Name"
-                        onChange={this.onChange}
-                    />
+            <div className="login">
+                <h1>Login please...</h1>
+                <form method="POST" onSubmit={this.login}>
                     <input
                         type="email"
                         name="email"
@@ -76,10 +61,11 @@ export default class Registration extends Component {
                         placeholder="Password"
                         onChange={this.onChange}
                     />
-                    <button type="submit">Register</button>
+                    <button type="submit">Login</button>
                 </form>
                 <div className="error">{this.state.error}</div>
-                <Link to="/login">Login here...</Link>
+                <Link to="/">Register here...</Link>
+                <Link to="/pwreset">Forgot password?</Link>
             </div>
         );
     }
