@@ -18,6 +18,7 @@ export default class BioEditor extends Component {
     onEditBio() {
         this.setState({
             isEditing: true,
+            draft: this.props.bio,
         });
     }
 
