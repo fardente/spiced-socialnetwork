@@ -44,6 +44,12 @@ app.get("/api/user/", async (request, response) => {
     response.json(await db.getUserById(request.session.userId));
 });
 
+app.get("/api/user/:id", async (request, response) => {
+    const id = request.params.id;
+    console.log(id);
+    response.json(await db.getUserById(id));
+});
+
 // app.get("/api/user/", (request, response) => {
 //     db.getUserByEmail(request.body.email).then((user) => {
 //         response.json(user);
