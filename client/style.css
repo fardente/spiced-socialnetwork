@@ -5,6 +5,8 @@ body {
 header {
     display: flex;
     justify-content: space-between;
+    max-height: 150px;
+    background-color: green;
 }
 
 .modal {
@@ -14,8 +16,35 @@ header {
     bottom: 0;
     left: 0;
     background-color: rgba(50, 50, 50, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modalForm {
+    min-height: 100px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    border: 1px solid blueviolet;
+    background-color: greenyellow;
 }
 
 form {
-    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    border: 1px solid blueviolet;
+    background-color: greenyellow;
+}
+
+.avatar {
+    border: 1px solid red;
+    max-height: inherit;
+}
+
+.avatar img {
+    max-width: 250px;
+    max-height: inherit;
 }

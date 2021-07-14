@@ -23,9 +23,9 @@ export default class App extends Component {
     }
 
     async componentDidMount() {
-        const user = await axios.get("/api/user");
-        console.log(user.data);
-        this.setState(user.data);
+        const { data } = await axios.get("/api/user");
+        console.log(data);
+        this.setState(data);
         console.log(this.state);
     }
 

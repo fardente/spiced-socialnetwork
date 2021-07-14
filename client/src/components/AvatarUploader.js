@@ -32,23 +32,25 @@ export default class AvatarUploader extends Component {
     render() {
         return (
             <div className="modal" onClick={this.props.toggleModal}>
-                <form
-                    action="/"
-                    method="POST"
-                    encType="multipart/form-data"
-                    onSubmit={this.uploadAvatar}
-                    onClick={(event) => event.stopPropagation()}
-                >
-                    <input
-                        type="file"
-                        accept="image/*"
-                        name="file"
-                        id="file"
+                <div className="modalForm">
+                    <form
+                        action="/"
+                        method="POST"
+                        encType="multipart/form-data"
+                        onSubmit={this.uploadAvatar}
                         onClick={(event) => event.stopPropagation()}
-                        onChange={this.onChange}
-                    ></input>
-                    <button type="submit">Upload</button>
-                </form>
+                    >
+                        <input
+                            type="file"
+                            accept="image/*"
+                            name="file"
+                            id="file"
+                            onClick={(event) => event.stopPropagation()}
+                            onChange={this.onChange}
+                        ></input>
+                        <button type="submit">Upload</button>
+                    </form>
+                </div>
             </div>
         );
     }
