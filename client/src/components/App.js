@@ -55,7 +55,7 @@ export default class App extends Component {
     render() {
         return (
             <BrowserRouter>
-                <section>
+                <section className="app">
                     {this.state.showModal && (
                         <AvatarUploader
                             toggleModal={this.toggleModal}

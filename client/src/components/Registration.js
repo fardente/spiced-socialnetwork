@@ -50,7 +50,7 @@ export default class Registration extends Component {
     render() {
         return (
             <div className="registration">
-                <h1>Register please...</h1>
+                <h1>Register</h1>
                 <form method="POST" onSubmit={this.register}>
                     <input
                         type="text"

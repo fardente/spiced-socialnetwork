@@ -5,20 +5,24 @@ import PWreset from "./PWreset";
 
 function Welcome() {
     return (
-        <div>
-            <h1>Welcome</h1>
-            <HashRouter>
-                <Route path="/" exact>
-                    <Registration />
-                </Route>
+        <div className="welcome">
+            <div>
+                <HashRouter>
+                    <Route path="/" exact>
+                        <Registration />
+                    </Route>
 
-                <Route path="/login">
-                    <Login />
-                </Route>
-                <Route path="/pwreset">
-                    <PWreset />
-                </Route>
-            </HashRouter>
+                    <Route path="/login">
+                        <Login />
+                    </Route>
+                    <Route path="/pwreset">
+                        <PWreset />
+                    </Route>
+                </HashRouter>
+            </div>
+            <div className="greeting">
+                <h1>Join thousands of freaks like yourself!</h1>
+            </div>
         </div>
     );
 }

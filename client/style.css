@@ -1,5 +1,104 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-family: "Open Sans", sans-serif;
+}
+
+h1,
+h2 {
+    font-family: "Heebo", sans-serif;
+}
+
+:root {
+    --dark-color: #05386b;
+    --dark-shade-color: #379683;
+    --main-bg-color: #5cdb95;
+    --light-shade-color: #8ee4af;
+    --light-color: #edf5e1;
+    --border-radius: 12px;
+}
+
+::placeholder {
+    /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: var(--main-bg-color);
+    opacity: 1; /* Firefox */
+}
+
+input {
+    margin: 1rem;
+    height: 2rem;
+    border: none;
+    padding: 0.5rem;
+    font-family: inherit;
+    font-size: 1.2rem;
+    background-color: var(--dark-shade-color);
+    border-radius: var(--border-radius);
+    color: var(--light-color);
+}
+
+button {
+    background-color: var(--dark-color);
+    color: var(--light-color);
+    padding: 0.4rem;
+    margin: 0.5rem;
+    font-family: "Heebo", sans-serif;
+    font-weight: bold;
+    font-size: 1.4rem;
+    border-radius: var(--border-radius);
+    border: none;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    border: 1px solid var(--dark-shade-color);
+    background-color: var(--light-color);
+    border-radius: var(--border-radius);
+}
+
 body {
-    background-color: ghostwhite;
+    background-color: var(--main-bg-color);
+    color: var(--dark-color);
+}
+
+main {
+    max-width: 80%;
+    margin: 2em auto;
+}
+
+.welcome {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+}
+
+.welcome div {
+    margin: 1rem;
+    min-width: 40%;
+}
+
+.greeting {
+    color: var(--light-color);
+    font-size: 1.5rem;
+    min-width: 60%;
+}
+
+.registration {
+    text-align: center;
+    padding: 1rem;
+}
+
+.registration h1 {
+    margin: 0.5rem;
+}
+.app {
 }
 
 header {
@@ -30,15 +129,6 @@ header {
     background-color: greenyellow;
 }
 
-form {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    border: 1px solid blueviolet;
-    background-color: greenyellow;
-}
-
 .avatar {
     border: 1px solid red;
     max-height: inherit;
@@ -47,4 +137,11 @@ form {
 .avatar img {
     max-width: 250px;
     max-height: inherit;
+}
+
+.profile {
+}
+
+.otherprofile {
+    display: flex;
 }
