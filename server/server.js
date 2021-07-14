@@ -46,8 +46,12 @@ app.get("/api/user/", async (request, response) => {
 
 app.get("/api/user/:id", async (request, response) => {
     const id = request.params.id;
-    console.log(id);
-    response.json(await db.getUserById(id));
+    try {
+        response.json(await db.getUserById(id));
+    } catch (error) {
+        response.status(404);
+        response.json({ error });
+    }
 });
 
 // app.get("/api/user/", (request, response) => {

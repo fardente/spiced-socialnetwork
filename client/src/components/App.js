@@ -1,6 +1,8 @@
 import { Component } from "react";
+import { BrowserRouter, Route } from "react-router-dom";
 import axios from "../axios";
 import Profile from "./Profile";
+import OtherProfile from "./OtherProfile";
 import Avatar from "./Avatar";
 import AvatarUploader from "./AvatarUploader";
 
@@ -24,9 +26,8 @@ export default class App extends Component {
 
     async componentDidMount() {
         const { data } = await axios.get("/api/user");
-        console.log(data);
+        console.log("app mounted", data);
         this.setState(data);
-        console.log(this.state);
     }
 
     onAvatarClick() {
@@ -53,32 +54,42 @@ export default class App extends Component {
 
     render() {
         return (
-            <section>
-                {this.state.showModal && (
-                    <AvatarUploader
-                        toggleModal={this.toggleModal}
-                        updateAvatar={this.updateAvatar}
+            <BrowserRouter>
+                <section>
+                    {this.state.showModal && (
+                        <AvatarUploader
+                            toggleModal={this.toggleModal}
+                            updateAvatar={this.updateAvatar}
+                        />
+                    )}
+                    <header>
+                        <img src=""></img>
+                        You are logged in! Welcome to the N3tW0rk
+                        <Avatar
+                            firstname={this.state.firstname}
+                            lastname={this.state.lastname}
+                            avatar_url={this.state.avatar_url}
+                            bio={this.state.bio}
+                            onAvatarClick={this.onAvatarClick}
+                        />
+                    </header>
+                    <Route
+                        path="/"
+                        exact
+                        render={() => (
+                            <Profile
+                                firstname={this.state.firstname}
+                                lastname={this.state.lastname}
+                                avatar_url={this.state.avatar_url}
+                                bio={this.state.bio}
+                                onAvatarClick={this.onAvatarClick}
+                                updateBio={this.updateBio}
+                            />
+                        )}
                     />
-                )}
-                <header>
-                    <img src=""></img>
-                    <Avatar
-                        firstname={this.state.firstname}
-                        lastname={this.state.lastname}
-                        avatar_url={this.state.avatar_url}
-                        bio={this.state.bio}
-                        onAvatarClick={this.onAvatarClick}
-                    />
-                </header>
-                <Profile
-                    firstname={this.state.firstname}
-                    lastname={this.state.lastname}
-                    avatar_url={this.state.avatar_url}
-                    bio={this.state.bio}
-                    onAvatarClick={this.onAvatarClick}
-                    updateBio={this.updateBio}
-                />
-            </section>
+                    <Route path="/user/:id" component={OtherProfile} />
+                </section>
+            </BrowserRouter>
         );
     }
 }
