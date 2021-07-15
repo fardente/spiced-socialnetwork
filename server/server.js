@@ -54,12 +54,6 @@ app.get("/api/user/:id", async (request, response) => {
     }
 });
 
-// app.get("/api/user/", (request, response) => {
-//     db.getUserByEmail(request.body.email).then((user) => {
-//         response.json(user);
-//     });
-// });
-
 app.post("/password/reset/start", async (request, response) => {
     // console.log(request.body);
     let exists = await db.checkMail(request.body.email);
@@ -82,11 +76,8 @@ app.post("/password/reset/start", async (request, response) => {
 });
 
 app.post("/password/reset/verify", async (request, response) => {
-    console.log(request.body);
     let storedCode = await db.checkCode(request.body.email);
-    console.log("server ", storedCode, request.body.code);
     let codeValid = storedCode == request.body.code;
-    console.log("server codes match ", codeValid);
     if (codeValid) {
         let passwordChange = await db.changePassword(
             request.body.email,
@@ -103,10 +94,8 @@ app.post("/password/reset/verify", async (request, response) => {
 });
 
 app.post("/api/login", (request, response) => {
-    console.log("logging in user", request.body);
     db.login(request.body)
         .then((result) => {
-            console.log("server login post result", result);
             request.session.userId = result;
             response.json(result);
         })
@@ -118,7 +107,6 @@ app.post("/api/login", (request, response) => {
 });
 
 app.post("/api/register", (request, response) => {
-    // console.log("adding user", request.body);
     db.addUser(request.body)
         .then((result) => {
             request.session.userId = result.id;
@@ -140,7 +128,6 @@ app.post(
     uploader.single("file"),
     upload,
     async (request, response) => {
-        console.log(request.body, request.file);
         request.body.url = awsBucketUrl + request.file.filename;
         if (request.file) {
             let result = await db.updateAvatar(
