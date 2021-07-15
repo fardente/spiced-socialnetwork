@@ -26,14 +26,10 @@ function getUserById(id) {
     return db
         .query("SELECT * FROM users WHERE id = $1", [id])
         .then((result) => {
-            if (result.rows.length < 1) {
-                // return { error: "user not found" };
-                throw new Error("User not found");
-            }
             return result.rows[0];
         })
         .catch((error) => {
-            console.log("db.js get user by ID error", error.message);
+            console.log("db.js get user by ID error", id, error.message);
             throw error.message;
         });
 }
@@ -48,6 +44,19 @@ function getUserByEmail(email) {
             console.log("db.js get user by email error", error.message);
             throw error.message;
         });
+}
+
+async function getRecentUsers(limit) {
+    try {
+        const { rows } = await db.query(
+            "SELECT id, firstname, lastname, avatar_url FROM users ORDER BY id DESC LIMIT $1",
+            [limit]
+        );
+        return rows;
+    } catch (error) {
+        console.error("db.js getRecentUsers", error);
+        throw error;
+    }
 }
 
 async function checkMail(email) {
@@ -167,6 +176,7 @@ module.exports = {
     getUsers,
     getUserByEmail,
     getUserById,
+    getRecentUsers,
     checkMail,
     addCode,
     checkCode,

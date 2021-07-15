@@ -41,7 +41,19 @@ app.get("/api/user/id.json", (request, response) => {
 });
 
 app.get("/api/user/", async (request, response) => {
-    response.json(await db.getUserById(request.session.userId));
+    try {
+        const user = await db.getUserById(request.session.userId);
+        if (!user) {
+            console.log("server api/user undef", user);
+            response.status(404);
+            response.json();
+        }
+        response.json(user);
+    } catch (error) {
+        console.error("server api/user", error);
+        response.status(404);
+        response.json({ error });
+    }
 });
 
 app.get("/api/user/:id", async (request, response) => {
@@ -51,6 +63,15 @@ app.get("/api/user/:id", async (request, response) => {
     } catch (error) {
         response.status(404);
         response.json({ error });
+    }
+});
+
+app.get("/api/users/recent", async (request, response) => {
+    try {
+        response.json(await db.getRecentUsers(3));
+    } catch (error) {
+        response.status(500);
+        response.json({ ...error });
     }
 });
 
