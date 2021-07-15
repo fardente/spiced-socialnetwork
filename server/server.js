@@ -121,18 +121,16 @@ app.post("/api/register", (request, response) => {
     // console.log("adding user", request.body);
     db.addUser(request.body)
         .then((result) => {
-            console.log("server register post result", result, result.id);
             request.session.userId = result.id;
             response.json(result);
         })
         .catch((error) => {
-            console.log("server.js register", error);
             response.status(400);
             response.json({ error: error });
         });
 });
 
-app.post("/api/user/updatebio", async (request, response) => {
+app.put("/api/user/updatebio", async (request, response) => {
     const result = await db.updateBio(request.session.userId, request.body.bio);
     response.json(result);
 });

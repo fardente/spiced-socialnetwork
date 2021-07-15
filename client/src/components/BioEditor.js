@@ -30,7 +30,7 @@ export default class BioEditor extends Component {
 
     onSubmitBio(event) {
         event.preventDefault();
-        axios.post("/api/user/updatebio", { bio: this.state.draft });
+        axios.put("/api/user/updatebio", { bio: this.state.draft });
         this.setState({
             isEditing: false,
         });
