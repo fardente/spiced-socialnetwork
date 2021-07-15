@@ -59,6 +59,19 @@ async function getRecentUsers(limit) {
     }
 }
 
+async function searchUser(query) {
+    try {
+        const { rows } = await db.query(
+            "SELECT id, firstname, lastname, avatar_url FROM users WHERE firstname ILIKE $1 OR lastname ILIKE $1",
+            [query + "%"]
+        );
+        return rows;
+    } catch (error) {
+        console.error("db searchUser", error);
+        throw error;
+    }
+}
+
 async function checkMail(email) {
     let exists = false;
     console.log("checking mail", email);
@@ -177,6 +190,7 @@ module.exports = {
     getUserByEmail,
     getUserById,
     getRecentUsers,
+    searchUser,
     checkMail,
     addCode,
     checkCode,
