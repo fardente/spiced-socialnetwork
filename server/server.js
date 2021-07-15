@@ -127,6 +127,11 @@ app.post("/api/login", (request, response) => {
         });
 });
 
+app.post("/api/logout", (request, response) => {
+    request.session = null;
+    response.json();
+});
+
 app.post("/api/register", (request, response) => {
     db.addUser(request.body)
         .then((result) => {
