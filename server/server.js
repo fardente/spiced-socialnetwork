@@ -75,6 +75,15 @@ app.get("/api/users/recent", async (request, response) => {
     }
 });
 
+app.get("/api/users/search", async (request, response) => {
+    try {
+        response.json(await db.searchUser(request.query.q));
+    } catch (error) {
+        response.status(500);
+        response.json({ ...error });
+    }
+});
+
 app.post("/password/reset/start", async (request, response) => {
     // console.log(request.body);
     let exists = await db.checkMail(request.body.email);
