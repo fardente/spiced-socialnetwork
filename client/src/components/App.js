@@ -3,6 +3,7 @@ import { BrowserRouter, Route } from "react-router-dom";
 import axios from "../axios";
 import Profile from "./Profile";
 import OtherProfile from "./OtherProfile";
+import FindPeople from "./FindPeople";
 import Avatar from "./Avatar";
 import AvatarUploader from "./AvatarUploader";
 
@@ -88,6 +89,7 @@ export default class App extends Component {
                         )}
                     />
                     <Route path="/user/:id" component={OtherProfile} />
+                    <Route path="/users" component={FindPeople} />
                 </section>
             </BrowserRouter>
         );
