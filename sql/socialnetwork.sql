@@ -15,9 +15,9 @@ CREATE TABLE users(
 
 CREATE TABLE friends(
     id SERiaL PRiMARY KEY,
-    sender_id INT REFERENCES users (id),
-    receiver_id INT REFERENCES users (id),
-    accepted BOOLEAN,
+    sender_id INT REFERENCES users (id) NOT NULL,
+    receiver_id INT REFERENCES users (id) NOT NULL,
+    accepted BOOLEAN DEFAULT FALSE,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
