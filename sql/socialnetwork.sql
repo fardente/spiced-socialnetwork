@@ -1,3 +1,4 @@
+DROP TABLE IF EXISTS friends;
 DROP TABLE IF EXISTS passreset;
 DROP TABLE IF EXISTS users;
 
@@ -9,6 +10,14 @@ CREATE TABLE users(
     passwordhash VARCHAR NOT NULL,
     avatar_url TEXT,
     bio TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE friends(
+    id SERiaL PRiMARY KEY,
+    sender_id INT REFERENCES users (id),
+    receiver_id INT REFERENCES users (id),
+    accepted BOOLEAN,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
