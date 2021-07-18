@@ -66,6 +66,34 @@ app.get("/api/user/:id", async (request, response) => {
     }
 });
 
+app.get("/api/user/:id/friends", async (request, response) => {
+    const id = request.params.id;
+    try {
+        const result = await db.getFriends(id);
+        console.log(result);
+        response.json(result);
+    } catch (error) {
+        response.status(404);
+        response.json({ error });
+    }
+});
+
+app.get("/api/user/:id/requests", async (request, response) => {
+    const id = request.params.id;
+    console.log("server get friendstatus", request.session.userId, id);
+    try {
+        const result = await db.getFriendshipStatus(request.session.userId, id);
+        console.log(result);
+        response.json({
+            user_id: request.session.userId,
+            ...result,
+        });
+    } catch (error) {
+        response.status(404);
+        response.json({ error });
+    }
+});
+
 app.get("/api/users/recent", async (request, response) => {
     try {
         response.json(await db.getRecentUsers(3));
