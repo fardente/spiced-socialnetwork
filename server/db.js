@@ -46,6 +46,32 @@ function getUserByEmail(email) {
         });
 }
 
+async function getFriends(id) {
+    try {
+        const { rows } = await db.query(
+            "SELECT * FROM friends WHERE (sender_id = $1 OR receiver_id = $1) AND accepted = true",
+            [id]
+        );
+        return rows;
+    } catch (error) {
+        console.error("db getFriends ", error);
+        throw error;
+    }
+}
+
+async function getFriendshipStatus(viewer_id, viewee_id) {
+    try {
+        const { rows } = await db.query(
+            "SELECT * FROM friends WHERE (sender_id = $1 AND receiver_id = $2) OR (sender_id = $2 AND receiver_id = $1)",
+            [viewer_id, viewee_id]
+        );
+        return rows[0];
+    } catch (error) {
+        console.error("db getFriendshipStatus ", error);
+        throw error;
+    }
+}
+
 async function getRecentUsers(limit) {
     try {
         const { rows } = await db.query(
@@ -190,6 +216,8 @@ module.exports = {
     getUserByEmail,
     getUserById,
     getRecentUsers,
+    getFriends,
+    getFriendshipStatus,
     searchUser,
     checkMail,
     addCode,
