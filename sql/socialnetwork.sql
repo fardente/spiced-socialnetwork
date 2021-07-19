@@ -29,3 +29,6 @@ CREATE TABLE passreset(
 
 
 INSERT INTO users (firstname, lastname, email, passwordhash) VALUES ('Homer', 'Simpson', 'homer@s.com', '$2a$10$vPIxWGr70UNqekKXnLOnwewIb0euur0w2k2MS/LHBbGwlxecSo3lm');
+INSERT INTO users (firstname, lastname, email, passwordhash) VALUES ('Marge', 'Simpson', 'marge@s.com', '$2a$10$vPIxWGr70UNqekKXnLOnwewIb0euur0w2k2MS/LHBbGwlxecSo3lm');
+INSERT INTO users (firstname, lastname, email, passwordhash) VALUES ('Bart', 'Simpson', 'bart@s.com', '$2a$10$vPIxWGr70UNqekKXnLOnwewIb0euur0w2k2MS/LHBbGwlxecSo3lm');
+INSERT INTO users (firstname, lastname, email, passwordhash) VALUES ('Lisa', 'Simpson', 'lisa@s.com', '$2a$10$vPIxWGr70UNqekKXnLOnwewIb0euur0w2k2MS/LHBbGwlxecSo3lm');
