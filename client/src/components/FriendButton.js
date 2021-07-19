@@ -88,7 +88,7 @@ export default function FriendButton({ other_id }) {
 
     return (
         <div>
-            {showButton && (
+            {showButton && user_id && (
                 <button className="friendButton" onClick={onClick}>
                     {buttonText}
                 </button>
