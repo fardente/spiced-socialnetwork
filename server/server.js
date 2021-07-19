@@ -206,6 +206,36 @@ app.post(
     }
 );
 
+app.post("/api/user/addfriend", async (request, response) => {
+    try {
+        const result = await db.addFriend(request.body);
+        response.json(result);
+    } catch (error) {
+        response.statusCode = "400";
+        response.json(error);
+    }
+});
+
+app.post("/api/user/acceptfriend", async (request, response) => {
+    try {
+        const result = await db.acceptFriendRequest(request.body.id);
+        response.json(result);
+    } catch (error) {
+        response.statusCode = "400";
+        response.json(error);
+    }
+});
+
+app.post("/api/user/deletefriendship", async (request, response) => {
+    try {
+        const result = await db.deleteFriendship(request.body.id);
+        response.json(result);
+    } catch (error) {
+        response.statusCode = "400";
+        response.json(error);
+    }
+});
+
 app.get("*", function (req, res) {
     res.sendFile(path.join(__dirname, "..", "client", "index.html"));
 });
