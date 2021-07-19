@@ -72,6 +72,45 @@ async function getFriendshipStatus(viewer_id, viewee_id) {
     }
 }
 
+async function addFriend({ sender_id, receiver_id }) {
+    try {
+        const { rows } = await db.query(
+            "INSERT INTO friends (sender_id, receiver_id) VALUES ($1, $2) RETURNING *",
+            [sender_id, receiver_id]
+        );
+        return rows;
+    } catch (error) {
+        console.error("db addFriend ", error);
+        throw error;
+    }
+}
+
+async function acceptFriendRequest(id) {
+    try {
+        const { rows } = await db.query(
+            "UPDATE friends SET accepted = true WHERE id = $1 RETURNING *",
+            [id]
+        );
+        return rows;
+    } catch (error) {
+        console.error("db acceptFriendRequest", error);
+        throw error;
+    }
+}
+
+async function deleteFriendship(id) {
+    try {
+        const result = await db.query(
+            "DELETE FROM friends WHERE id = $1 RETURNING *",
+            [id]
+        );
+        return result;
+    } catch (error) {
+        console.error("db deleteFriendship", error);
+        throw error;
+    }
+}
+
 async function getRecentUsers(limit) {
     try {
         const { rows } = await db.query(
@@ -216,8 +255,11 @@ module.exports = {
     getUserByEmail,
     getUserById,
     getRecentUsers,
+    addFriend,
+    acceptFriendRequest,
     getFriends,
     getFriendshipStatus,
+    deleteFriendship,
     searchUser,
     checkMail,
     addCode,
