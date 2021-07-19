@@ -34,7 +34,7 @@ export default class OtherProfile extends Component {
                     </p>
                     <p>{this.state.bio}</p>
                 </div>
-                <FriendButton other_id={this.state.id} />
+                {this.state.id && <FriendButton other_id={this.state.id} />}
             </section>
         );
     }
