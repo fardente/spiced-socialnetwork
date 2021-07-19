@@ -13,6 +13,9 @@ export default function FriendButton({ other_id }) {
     let [showButton, setShowButton] = useState(true);
 
     useEffect(() => {
+        if (!other_id) {
+            return;
+        }
         axios.get("/api/user/" + other_id + "/requests").then((result) => {
             let { id, user_id, sender_id, receiver_id, accepted } = result.data;
             setUser_id(user_id);
