@@ -10,7 +10,7 @@ export default function FriendButton({ other_id }) {
     let [friendship_id, setFriendship_id] = useState(null);
     let [user_id, setUser_id] = useState(null);
     let [buttonText, setButtonText] = useState(ADD_FRIEND);
-    let [showButton, setShowButton] = useState(true);
+    let [showButton, setShowButton] = useState(false);
 
     useEffect(() => {
         if (!other_id) {
@@ -25,7 +25,7 @@ export default function FriendButton({ other_id }) {
                 setShowButton(false);
                 return;
             }
-
+            setShowButton(true);
             if (!sender_id) {
                 setButtonText(ADD_FRIEND);
                 return;
@@ -88,7 +88,7 @@ export default function FriendButton({ other_id }) {
 
     return (
         <div>
-            {showButton && user_id && (
+            {showButton && (
                 <button className="friendButton" onClick={onClick}>
                     {buttonText}
                 </button>
