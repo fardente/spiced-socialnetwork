@@ -59,6 +59,23 @@ async function getFriends(id) {
     }
 }
 
+async function getFriendsAndWannabes(user_id) {
+    try {
+        const { rows } = await db.query(
+            `SELECT users.id, firstname, lastname, avatar_url, accepted
+                FROM friends
+                JOIN users
+                ON (accepted = false AND receiver_id = $1 AND sender_id = users.id)
+                OR (accepted = true AND receiver_id = $1 AND sender_id = users.id)
+                OR (accepted = true AND sender_id = $1 AND receiver_id = users.id)`,
+            [user_id]
+        );
+        return rows;
+    } catch (error) {
+        console.error("db getFriendsAndWannabes", error);
+    }
+}
+
 async function getFriendshipStatus(viewer_id, viewee_id) {
     try {
         const { rows } = await db.query(
@@ -258,6 +275,7 @@ module.exports = {
     addFriend,
     acceptFriendRequest,
     getFriends,
+    getFriendsAndWannabes,
     getFriendshipStatus,
     deleteFriendship,
     searchUser,

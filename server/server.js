@@ -55,7 +55,18 @@ app.get("/api/user/", async (request, response) => {
         response.json({ error });
     }
 });
-
+app.get("/api/user/friendsandwannabes", async (request, response) => {
+    const id = request.session.userId;
+    console.log("Server gettin wannabes", id);
+    try {
+        const result = await db.getFriendsAndWannabes(id);
+        console.log(result);
+        response.json(result);
+    } catch (error) {
+        response.status(404);
+        response.json({ error });
+    }
+});
 app.get("/api/user/:id", async (request, response) => {
     const id = request.params.id;
     try {
