@@ -1,8 +1,12 @@
+import axios from "../axios";
+
 export const GET_FRIENDS = "GET_FRIENDS";
 
-export function getFriends(friends) {
+export async function getFriends() {
+    const { data } = await axios.get("/api/user/friendsandwannabes");
+    console.log("actions", data);
     return {
-        type: "GET_FRIENDS",
-        friends,
+        type: GET_FRIENDS,
+        friends: data,
     };
 }
