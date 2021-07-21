@@ -175,7 +175,7 @@ app.post("/api/login", (request, response) => {
         });
 });
 
-app.post("/api/logout", (request, response) => {
+app.post("/logout", (request, response) => {
     request.session = null;
     response.json();
 });
