@@ -5,6 +5,7 @@ import Profile from "./Profile";
 import OtherProfile from "./OtherProfile";
 import FindPeople from "./FindPeople";
 import Friends from "./Friends";
+import Nav from "./Nav";
 import Avatar from "./Avatar";
 import AvatarUploader from "./AvatarUploader";
 
@@ -67,6 +68,7 @@ export default class App extends Component {
                     <header>
                         <img src=""></img>
                         You are logged in! Welcome to the N3tW0rk
+                        <Nav />
                         <Avatar
                             firstname={this.state.firstname}
                             lastname={this.state.lastname}
