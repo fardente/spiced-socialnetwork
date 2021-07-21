@@ -4,6 +4,7 @@ import axios from "../axios";
 import Profile from "./Profile";
 import OtherProfile from "./OtherProfile";
 import FindPeople from "./FindPeople";
+import Friends from "./Friends";
 import Avatar from "./Avatar";
 import AvatarUploader from "./AvatarUploader";
 
@@ -90,6 +91,7 @@ export default class App extends Component {
                     />
                     <Route path="/user/:id" component={OtherProfile} />
                     <Route path="/users" component={FindPeople} />
+                    <Route path="/friends" component={Friends} />
                 </section>
             </BrowserRouter>
         );
