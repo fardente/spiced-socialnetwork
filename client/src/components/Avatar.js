@@ -1,10 +1,11 @@
+import { DEFAULT_AVATAR } from "../conf";
+
 export default function Avatar({
     firstname,
     lastname,
     avatar_url,
     onAvatarClick,
 }) {
-    const DEFAULT_AVATAR = "https://via.placeholder.com/100";
     return (
         <div className="avatar">
             <img
