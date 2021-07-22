@@ -69,7 +69,7 @@ body {
 
 main {
     max-width: 80%;
-    margin: 2em auto;
+    margin: 0 auto;
 }
 
 .welcome {
@@ -104,8 +104,12 @@ main {
 header {
     display: flex;
     justify-content: space-between;
-    max-height: 150px;
+    max-height: 100px;
     background-color: green;
+}
+
+.nav {
+    display: flex;
 }
 
 .modal {
@@ -155,4 +159,57 @@ header {
 
 .otherprofile {
     display: flex;
+}
+
+.chat {
+    width: 50%;
+    height: 80vh;
+    max-height: 80vh;
+    margin: 10px auto;
+}
+
+.chatMessageBox {
+    overflow-y: scroll;
+    max-height: 60vh;
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+.chatMessage {
+    display: flex;
+    align-items: center;
+    margin: 0.1rem;
+    border: 1px solid black;
+}
+
+.chatMessage img {
+    max-height: 50px;
+}
+
+.chatText {
+    overflow-wrap: anywhere;
+    word-wrap: anywhere;
+    word-break: break-all;
+}
+
+.chatText p:first-child {
+    padding: 0 0.5rem 0.5rem 0.7rem;
+    font-weight: bold;
+}
+
+.chatText p:last-child {
+    padding: 0 0.5rem 0.5rem 0.7rem;
+    font-size: 0.9rem;
+}
+
+.chatInput {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px auto;
+}
+
+.chatInput textarea {
+    height: 4rem;
+    width: 70%;
 }
