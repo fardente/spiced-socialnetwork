@@ -1,5 +1,7 @@
 const express = require("express");
 const app = express();
+const http = require("http");
+const socket = require("socket.io");
 const compression = require("compression");
 const path = require("path");
 const cookieSession = require("cookie-session");
@@ -12,16 +14,48 @@ const cryptoRandomString = require("crypto-random-string");
 
 const awsBucketUrl = "https://nandoseimer.s3.amazonaws.com/";
 
+const cookieSessionConf = cookieSession({
+    secret: "This is the most secret secret",
+    maxAge: 1000 * 60 * 60 * 24,
+});
+
+const server = http.Server(app);
+const io = socket(server, {
+    allowRequest: (req, callback) =>
+        callback(null, req.headers.referer.startsWith("http://localhost:3000")),
+});
+
+io.use(function (socket, next) {
+    cookieSessionConf(socket.request, socket.request.res, next);
+});
+
+io.on("connection", async (socket) => {
+    const id = socket.request.session.userId;
+    console.log("Connected", socket.id, id);
+    if (!id) {
+        console.log("server user not logged in");
+        return;
+    }
+
+    const chatHistory = await db.getChat();
+    console.log(chatHistory);
+
+    socket.emit("chatHistory", chatHistory);
+
+    socket.on("chatMessage", async (message) => {
+        let newMessage = await db.addChat(id, message);
+        const { firstname, lastname, avatar_url } = await db.getUserById(id);
+        newMessage = { ...newMessage, firstname, lastname, avatar_url };
+        console.log("chamessage", newMessage);
+        io.emit("chatMessage", newMessage);
+    });
+});
+
 app.use(compression());
 
 app.use(express.json());
 
-app.use(
-    cookieSession({
-        secret: "This is the most secret secret",
-        maxAge: 1000 * 60 * 60 * 24,
-    })
-);
+app.use(cookieSessionConf);
 
 app.use(csurf());
 
@@ -251,6 +285,6 @@ app.get("*", function (req, res) {
     res.sendFile(path.join(__dirname, "..", "client", "index.html"));
 });
 
-app.listen(process.env.PORT || 3001, function () {
+server.listen(process.env.PORT || 3001, function () {
     console.log("I'm listening.");
 });
