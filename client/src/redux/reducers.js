@@ -13,7 +13,7 @@ export default function reducer(state = {}, action) {
         console.log("chatmessage: ", action.message);
         return {
             ...state,
-            chatHistory: [...state.chatHistory, action.message],
+            chatHistory: [action.message, ...state.chatHistory],
         };
     }
 

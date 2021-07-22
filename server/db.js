@@ -273,10 +273,10 @@ async function updateAvatar(id, avatar_url) {
 async function getChat() {
     try {
         const { rows } = await db.query(
-            `SELECT * FROM (SELECT chat.id, sender_id, message, firstname, lastname, avatar_url, chat.created_at 
+            `SELECT chat.id, sender_id, message, firstname, lastname, avatar_url, chat.created_at 
             FROM chat
             JOIN users on users.id = sender_id
-            ORDER BY chat.id DESC LIMIT 10) AS M ORDER BY id ASC`,
+            ORDER BY chat.id DESC LIMIT 10`,
             []
         );
         return rows;
@@ -285,6 +285,23 @@ async function getChat() {
         throw error;
     }
 }
+
+// Get messages in reverse order, obsolete with flex-direction: column-reverse;
+// async function getChat() {
+//     try {
+//         const { rows } = await db.query(
+//             `SELECT * FROM (SELECT chat.id, sender_id, message, firstname, lastname, avatar_url, chat.created_at
+//             FROM chat
+//             JOIN users on users.id = sender_id
+//             ORDER BY chat.id DESC LIMIT 10) AS M ORDER BY id ASC`,
+//             []
+//         );
+//         return rows;
+//     } catch (error) {
+//         console.error("db getChat", error);
+//         throw error;
+//     }
+// }
 
 async function addChat(id, message) {
     try {
