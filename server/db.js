@@ -24,7 +24,10 @@ function getUsers() {
 
 function getUserById(id) {
     return db
-        .query("SELECT * FROM users WHERE id = $1", [id])
+        .query(
+            "SELECT id, firstname, lastname, avatar_url, email, bio FROM users WHERE id = $1",
+            [id]
+        )
         .then((result) => {
             return result.rows[0];
         })
@@ -267,6 +270,35 @@ async function updateAvatar(id, avatar_url) {
     return result.rows[0].avatar_url;
 }
 
+async function getChat() {
+    try {
+        const { rows } = await db.query(
+            `SELECT * FROM (SELECT chat.id, sender_id, message, firstname, lastname, avatar_url, chat.created_at 
+            FROM chat
+            JOIN users on users.id = sender_id
+            ORDER BY chat.id DESC LIMIT 10) AS M ORDER BY id ASC`,
+            []
+        );
+        return rows;
+    } catch (error) {
+        console.error("db getChat", error);
+        throw error;
+    }
+}
+
+async function addChat(id, message) {
+    try {
+        const { rows } = await db.query(
+            "INSERT INTO chat (sender_id, message) VALUES ($1, $2) RETURNING *",
+            [id, message]
+        );
+        return rows[0];
+    } catch (error) {
+        console.error("db addChat", error);
+        throw error;
+    }
+}
+
 module.exports = {
     getUsers,
     getUserByEmail,
@@ -287,4 +319,6 @@ module.exports = {
     addUser,
     updateAvatar,
     updateBio,
+    getChat,
+    addChat,
 };
