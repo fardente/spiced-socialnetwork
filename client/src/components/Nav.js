@@ -14,6 +14,7 @@ export default function Nav() {
         <nav className="nav">
             <Link to="/">My Profile</Link>
             <Link to="/friends">Friends</Link>
+            <Link to="/chat">Chat</Link>
             <Link to="/users">Find Friends</Link>
             <button type="submit" onClick={logout}>
                 Logout

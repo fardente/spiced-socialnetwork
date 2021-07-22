@@ -6,6 +6,8 @@ import { createStore, applyMiddleware } from "redux";
 import reduxPromise from "redux-promise";
 import reducer from "./redux/reducers";
 import { Provider } from "react-redux";
+import { init } from "./socket";
+
 const store = createStore(reducer, applyMiddleware(reduxPromise));
 
 axios
@@ -18,6 +20,7 @@ axios
                 </Provider>,
                 document.querySelector("main")
             );
+            init(store);
         } else {
             ReactDOM.render(<Welcome />, document.querySelector("main"));
         }
