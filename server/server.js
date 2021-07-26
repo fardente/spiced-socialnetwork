@@ -165,13 +165,11 @@ app.post("/password/reset/start", async (request, response) => {
             length: 6,
         });
         let storeCode = await db.addCode(request.body.email, secretCode);
-        console.log("server stored code", storeCode);
         let mail = sendEmail({
             subject: "Your code to reset your password",
             message: `Please enter the following code to reset your password: ${secretCode}`,
             email: "schwip+ses2@mailbox.org",
         });
-        console.log(mail);
     }
     response.json({
         exists,
@@ -181,6 +179,12 @@ app.post("/password/reset/start", async (request, response) => {
 app.post("/password/reset/verify", async (request, response) => {
     let storedCode = await db.checkCode(request.body.email);
     let codeValid = storedCode == request.body.code;
+    console.log(
+        "server passreset codevalid",
+        codeValid,
+        storedCode,
+        request.body.code
+    );
     if (codeValid) {
         let passwordChange = await db.changePassword(
             request.body.email,

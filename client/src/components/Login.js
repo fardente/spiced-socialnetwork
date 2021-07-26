@@ -47,7 +47,9 @@ export default class Login extends Component {
     render() {
         return (
             <div className="registration">
-                <h1>Login please...</h1>
+                <h1>
+                    <Link to="/">Register</Link> / Login{" "}
+                </h1>
                 <form method="POST" onSubmit={this.login}>
                     <input
                         type="email"
@@ -64,7 +66,8 @@ export default class Login extends Component {
                     <button type="submit">Login</button>
                 </form>
                 <div className="error">{this.state.error}</div>
-                <Link to="/">Register here...</Link>
+
+                <br />
                 <Link to="/pwreset">Forgot password?</Link>
             </div>
         );

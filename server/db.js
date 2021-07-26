@@ -159,14 +159,11 @@ async function searchUser(query) {
 
 async function checkMail(email) {
     let exists = false;
-    console.log("checking mail", email);
     try {
-        console.log("enter try");
         exists = await db.query("SELECT id FROM users WHERE email = $1", [
             email,
         ]);
         exists = exists.rows[0];
-        console.log("Exists", exists);
         exists = !!exists;
     } catch (error) {
         console.log("error", error);

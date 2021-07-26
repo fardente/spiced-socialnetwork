@@ -50,7 +50,9 @@ export default class Registration extends Component {
     render() {
         return (
             <div className="registration">
-                <h1>Register</h1>
+                <h1>
+                    Register / <Link to="/login">Login</Link>
+                </h1>
                 <form method="POST" onSubmit={this.register}>
                     <input
                         type="text"
@@ -79,7 +81,6 @@ export default class Registration extends Component {
                     <button type="submit">Register</button>
                 </form>
                 <div className="error">{this.state.error}</div>
-                <Link to="/login">Login here...</Link>
             </div>
         );
     }
