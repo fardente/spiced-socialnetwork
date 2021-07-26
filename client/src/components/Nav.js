@@ -16,7 +16,7 @@ export default function Nav() {
             <Link to="/friends">Friends</Link>
             <Link to="/chat">Chat</Link>
             <Link to="/users">Find Friends</Link>
-            <button type="submit" onClick={logout}>
+            <button type="submit" onClick={logout} className="logoutBtn">
                 Logout
             </button>
         </nav>

@@ -1,5 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 import {
     getFriends,
     accept_friend,
@@ -14,15 +15,13 @@ export default function Friends() {
 
     useEffect(() => {
         dispatch(getFriends());
-    }, []);
+    }, [dispatch]);
 
     function unfriendClick(id) {
-        console.log("unfriend", id);
         dispatch(unfriend(id));
     }
 
     function accept(id) {
-        console.log("accept", id);
         dispatch(accept_friend(id));
     }
 
@@ -32,9 +31,10 @@ export default function Friends() {
 
     return (
         <div>
-            {friends && friends.filter(({ accepted }) => !accepted) && (
-                <h2>These People want to be your friend:</h2>
-            )}
+            {friends &&
+                friends.filter(({ accepted }) => !accepted).length > 0 && (
+                    <h2>These People want to be your friend:</h2>
+                )}
             <div className="friendlist">
                 {friends &&
                     friends
@@ -52,7 +52,12 @@ export default function Friends() {
                                         ></img>
                                     </div>
                                     <div className="userinfo">
-                                        {friend.firstname} {friend.lastname}
+                                        <Link
+                                            to={"/user/" + friend.id}
+                                            key={friend.id}
+                                        >
+                                            {friend.firstname} {friend.lastname}
+                                        </Link>
                                         <br></br>
                                         <button
                                             onClick={() =>
@@ -93,7 +98,12 @@ export default function Friends() {
                                         ></img>
                                     </div>
                                     <div className="userinfo">
-                                        {friend.firstname} {friend.lastname}
+                                        <Link
+                                            to={"/user/" + friend.id}
+                                            key={friend.id}
+                                        >
+                                            {friend.firstname} {friend.lastname}
+                                        </Link>
                                         <br></br>
                                         <button
                                             onClick={() =>

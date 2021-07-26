@@ -11,14 +11,19 @@ export default function Profile({
 }) {
     return (
         <section className="profile">
-            Hey {firstname} - {lastname}
-            <Avatar
-                firstname={firstname}
-                lastname={lastname}
-                avatar_url={avatar_url}
-                onAvatarClick={onAvatarClick}
-            />
-            <BioEditor bio={bio} updateBio={updateBio} />
+            <h1>
+                Hey {firstname} {lastname}
+            </h1>
+            <br></br>
+            <div className="profileDetails">
+                <Avatar
+                    firstname={firstname}
+                    lastname={lastname}
+                    avatar_url={avatar_url}
+                    onAvatarClick={onAvatarClick}
+                />
+                <BioEditor bio={bio} updateBio={updateBio} />
+            </div>
         </section>
     );
 }

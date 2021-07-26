@@ -29,12 +29,12 @@ h3 {
     opacity: 1; /* Firefox */
 }
 
-a {
+a:hover {
     color: var(--light-color);
 }
 
-a:hover {
-    color: var(--dark-shade-color);
+a {
+    color: var(--dark-color);
 }
 
 input {
@@ -82,6 +82,8 @@ header {
     max-height: 60px;
     background-color: var(--light-shade-color);
     margin-bottom: 30px;
+    width: 90%;
+    margin: 0 auto 2rem auto;
 }
 
 .nav {
@@ -90,7 +92,22 @@ header {
 }
 
 .nav a {
+    font-family: "Heebo", sans-serif;
     margin: 0 15px;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.logoutBtn {
+    background: none;
+    border: none;
+    text-decoration: underline;
+    color: var(--dark-color);
+}
+
+.logoutBtn:hover {
+    color: var(--light-color);
+    cursor: pointer;
 }
 
 main {
@@ -174,7 +191,13 @@ main {
     display: flex;
     align-items: center;
     margin: 0.5rem;
-    border: 1px solid black;
+    border: 1px solid var(--dark-color);
+    background-color: var(--light-shade-color);
+    padding: 0.5rem;
+}
+
+.userinfo {
+    padding: 10px;
 }
 
 .user img {
@@ -192,10 +215,38 @@ main {
 }
 
 .profile {
+    border: 1px solid var(--dark-shade-color);
+    border-radius: 25px;
+    padding: 1rem;
+    margin-top: 2rem;
+    text-align: center;
+}
+
+.profileDetails {
+    display: flex;
+    align-items: center;
+}
+
+.profile h1 {
+    font-size: 1.5rem;
+}
+
+.bioArea {
+    height: 4rem;
+    width: 100%;
 }
 
 .otherprofile {
     display: flex;
+    border: 1px solid var(--dark-shade-color);
+    border-radius: 25px;
+    padding: 1rem;
+    margin-top: 2rem;
+    text-align: center;
+}
+
+.otherprofile h1 {
+    font-size: 1.5rem;
 }
 
 .chat {
@@ -219,7 +270,7 @@ main {
     display: flex;
     align-items: center;
     margin: 0.1rem;
-    border: 1px solid black;
+    border: 1px solid var(--dark-shade-color);
 }
 
 .chatMessage img {
@@ -250,6 +301,13 @@ main {
 }
 
 .chatInput textarea {
+    color: var(--dark-shade-color);
     height: 4rem;
     width: 70%;
+}
+
+@media screen and (max-width: 768px) {
+    .chat {
+        width: 100%;
+    }
 }

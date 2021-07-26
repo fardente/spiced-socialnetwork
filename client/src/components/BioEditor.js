@@ -52,6 +52,7 @@ export default class BioEditor extends Component {
         return (
             <form onSubmit={this.onSubmitBio}>
                 <textarea
+                    className="bioArea"
                     onInput={this.onInput}
                     defaultValue={this.props.bio}
                 ></textarea>
@@ -64,9 +65,11 @@ export default class BioEditor extends Component {
         return (
             <div>
                 {this.props.bio}
-                {this.state.isEditing
-                    ? this.renderEditMode()
-                    : this.renderButton()}
+                <div>
+                    {this.state.isEditing
+                        ? this.renderEditMode()
+                        : this.renderButton()}
+                </div>
             </div>
         );
     }

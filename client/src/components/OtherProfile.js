@@ -29,12 +29,16 @@ export default class OtherProfile extends Component {
                     <img src={this.state.avatar_url}></img>
                 </div>
                 <div className="userinfo">
-                    <p>
+                    <h1>
                         {this.state.firstname} {this.state.lastname}
-                    </p>
+                    </h1>
                     <p>{this.state.bio}</p>
+                    <div>
+                        {this.state.id && (
+                            <FriendButton other_id={this.state.id} />
+                        )}
+                    </div>
                 </div>
-                {this.state.id && <FriendButton other_id={this.state.id} />}
             </section>
         );
     }

@@ -30,6 +30,7 @@ export default function reducer(state = {}, action) {
         const newFriends = state.friends.filter(
             ({ friendship_id }) => friendship_id != action.rejectedFriendship
         );
+        console.log("rejected reducer", newFriends);
         return { ...state, friends: newFriends };
     }
 
