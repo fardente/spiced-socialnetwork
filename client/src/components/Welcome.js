@@ -21,7 +21,8 @@ function Welcome() {
                 </HashRouter>
             </div>
             <div className="greeting">
-                <h1>Join thousands of freaks like yourself!</h1>
+                <h1>Join thousands of 2D-freaks like yourself!</h1>
+                <h2>2D-Friends is a place for people from Flatland.</h2>
             </div>
         </div>
     );

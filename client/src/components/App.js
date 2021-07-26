@@ -67,7 +67,7 @@ export default class App extends Component {
                         />
                     )}
                     <header>
-                        <img src=""></img>
+                        <h1>2D-Friends</h1>
                         <Nav />
                         <Avatar
                             firstname={this.state.firstname}

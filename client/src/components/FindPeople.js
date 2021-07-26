@@ -52,9 +52,9 @@ export default function FindPeople() {
 
     return (
         <section>
-            Our newest members:
+            <h2>Our newest members:</h2>
             {renderUsers(recentUsers)}
-            Looking for someone specific?
+            <h1>Looking for someone specific?</h1>
             <input
                 type="text"
                 placeholder="Username"
