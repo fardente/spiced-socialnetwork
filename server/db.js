@@ -65,7 +65,7 @@ async function getFriends(id) {
 async function getFriendsAndWannabes(user_id) {
     try {
         const { rows } = await db.query(
-            `SELECT users.id, firstname, lastname, avatar_url, accepted
+            `SELECT users.id, friends.id AS friendship_id, firstname, lastname, avatar_url, accepted
                 FROM friends
                 JOIN users
                 ON (accepted = false AND receiver_id = $1 AND sender_id = users.id)

@@ -67,9 +67,34 @@ body {
     color: var(--dark-color);
 }
 
+header {
+    display: flex;
+    justify-content: space-between;
+    max-height: 60px;
+    background-color: var(--light-shade-color);
+    margin-bottom: 30px;
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+}
+
+.nav a {
+    margin: 0 15px;
+}
+
 main {
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+.content {
     max-width: 80%;
     margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .welcome {
@@ -99,17 +124,6 @@ main {
     margin: 0.5rem;
 }
 .app {
-}
-
-header {
-    display: flex;
-    justify-content: space-between;
-    max-height: 100px;
-    background-color: green;
-}
-
-.nav {
-    display: flex;
 }
 
 .modal {
@@ -166,6 +180,9 @@ header {
     height: 80vh;
     max-height: 80vh;
     margin: 10px auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .chatMessageBox {
@@ -206,7 +223,7 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 10px auto;
+    margin: 10px;
 }
 
 .chatInput textarea {

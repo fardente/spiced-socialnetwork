@@ -68,7 +68,6 @@ export default class App extends Component {
                     )}
                     <header>
                         <img src=""></img>
-                        You are logged in! Welcome to the N3tW0rk
                         <Nav />
                         <Avatar
                             firstname={this.state.firstname}
@@ -78,24 +77,26 @@ export default class App extends Component {
                             onAvatarClick={this.onAvatarClick}
                         />
                     </header>
-                    <Route
-                        path="/"
-                        exact
-                        render={() => (
-                            <Profile
-                                firstname={this.state.firstname}
-                                lastname={this.state.lastname}
-                                avatar_url={this.state.avatar_url}
-                                bio={this.state.bio}
-                                onAvatarClick={this.onAvatarClick}
-                                updateBio={this.updateBio}
-                            />
-                        )}
-                    />
-                    <Route path="/user/:id" component={OtherProfile} />
-                    <Route path="/users" component={FindPeople} />
-                    <Route path="/friends" component={Friends} />
-                    <Route path="/chat" component={Chat} />
+                    <section className="content">
+                        <Route
+                            path="/"
+                            exact
+                            render={() => (
+                                <Profile
+                                    firstname={this.state.firstname}
+                                    lastname={this.state.lastname}
+                                    avatar_url={this.state.avatar_url}
+                                    bio={this.state.bio}
+                                    onAvatarClick={this.onAvatarClick}
+                                    updateBio={this.updateBio}
+                                />
+                            )}
+                        />
+                        <Route path="/user/:id" component={OtherProfile} />
+                        <Route path="/users" component={FindPeople} />
+                        <Route path="/friends" component={Friends} />
+                        <Route path="/chat" component={Chat} />
+                    </section>
                 </section>
             </BrowserRouter>
         );

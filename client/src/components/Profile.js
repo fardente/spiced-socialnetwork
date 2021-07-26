@@ -10,7 +10,7 @@ export default function Profile({
     updateBio,
 }) {
     return (
-        <section>
+        <section className="profile">
             Hey {firstname} - {lastname}
             <Avatar
                 firstname={firstname}
