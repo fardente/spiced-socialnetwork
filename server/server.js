@@ -12,6 +12,8 @@ const { upload } = require("./s3");
 const { sendEmail } = require("./ses");
 const cryptoRandomString = require("crypto-random-string");
 
+const HOST = process.env.HOST || require("./secrets.json").HOST;
+
 const awsBucketUrl = "https://nandoseimer.s3.amazonaws.com/";
 
 const cookieSessionConf = cookieSession({
@@ -22,7 +24,7 @@ const cookieSessionConf = cookieSession({
 const server = http.Server(app);
 const io = socket(server, {
     allowRequest: (req, callback) =>
-        callback(null, req.headers.referer.startsWith("http://localhost:3000")),
+        callback(null, req.headers.referer.startsWith(HOST)),
 });
 
 io.use(function (socket, next) {
