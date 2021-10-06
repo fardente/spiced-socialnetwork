@@ -1,7 +1,7 @@
 # spiced-socialnetwork
 This was a project for the SPICED Academy Full Stack Bootcamp. A social network built with React, Redux and socket.io. 
 
-<a "href="https://twodfriends.herokuapp.com/#/"> Demo hosted on Heroku </a> 
+[Demo hosted on Heroku](https://twodfriends.herokuapp.com/#/)
 
 
 ## Registration
